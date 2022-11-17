@@ -108,7 +108,7 @@ To setup the remote Ruby SDK:
 - Wait until file indexing completes, then right click on the ./src/dashboard folder in the project pane and select "Mark Directory as... Ruby Project Root"
 - In RubyMine, go into preferences and navigate to the "Ruby SDK and Gems" settings.
 - Click on the + button to create a new configuration and select "Remote Interpreter or Version Manager".
-- Select the Docker Compose (not Docker!) radio button, point to the docker compose yml file (in the codeorg-docker-dev dir), and select the "web" as the image name. For the ruby path, enter "/home/cdodev/.rbenv/versions/2.6.6/bin/ruby".
+- Select the Docker Compose (not Docker!) radio button, point to the docker compose yml file (in the codeorg-docker-dev dir), and select the "web" as the image name. For the ruby path, enter "/home/cdodev/.rbenv/versions/2.7.5/bin/ruby".
 - Click OK to create the remote Ruby SDK. RubyMine will list and synchronize the gems from the container.
 - Click on the "Edit Path Mappings" icon. Create a new path mapping. Local src folder should map to "/app/src" on the container.
 - Ensure that the "Remote: ruby" configuration is the default and click OK to exit preferences.
@@ -148,7 +148,7 @@ To run the rails console from within RubyMine:
       "name": "Debug Dashboard",
       "type": "Ruby",
       "request": "launch",
-      "program": "/home/cdodev/.rbenv/versions/2.6.6/bin/bundle",
+      "program": "/home/cdodev/.rbenv/versions/2.7.5/bin/bundle",
       "args": ["exec", "thin", "start", "-a", "0.0.0.0", "-p", "3000"],
       "useBundler": true,
       "showDebuggerOutput": true,

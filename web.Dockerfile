@@ -19,12 +19,12 @@ RUN sudo apt-get -y install rbenv \
     && mkdir -p "$(rbenv root)"/plugins \
     && git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
 
-# Install Ruby 2.6.6 and Bundler 1.17.3. Also replace the system ruby (required for RubyMine debugging).
-RUN rbenv install 2.6.6 \
+# Install Ruby 2.7.5 and Bundler 2.3.22. Also replace the system ruby (required for RubyMine debugging).
+RUN rbenv install 2.7.5 \
     && echo -n '\n# rbenv init\neval "$(rbenv init -)"\n' >> ~/.bashrc \
-    && rbenv global 2.6.6 \
+    && rbenv global 2.7.5 \
     && sudo rm /usr/bin/ruby \
-    && sudo ln -s /home/cdodev/.rbenv/versions/2.6.6/bin/ruby /usr/bin/ruby
+    && sudo ln -s /home/cdodev/.rbenv/versions/2.7.5/bin/ruby /usr/bin/ruby
 
 # Install Node 14.17.1
 RUN sudo apt-get -y install nodejs npm \
@@ -53,7 +53,7 @@ ENV AWS_PROFILE=cdo
 RUN echo -n '\n# Chromium Binary\nexport CHROME_BIN=/usr/bin/chromium-browser\n' >> ~/.bashrc
 
 # Add Ruby binaries to path
-RUN echo -n '\n# Add Ruby binaries on path\nexport PATH=$PATH:/home/cdodev/.rbenv/versions/2.6.6/bin\n' >> ~/.bashrc
+RUN echo -n '\n# Add Ruby binaries on path\nexport PATH=$PATH:/home/cdodev/.rbenv/versions/2.7.5/bin\n' >> ~/.bashrc
 
 # Make temporary directory and do a bundle install
 RUN sudo mkdir -p /app/src
@@ -63,7 +63,7 @@ COPY src/.ruby-version /app/src/.
 RUN sudo chown -R cdodev /app
 RUN cd /app/src \
     && eval "$(rbenv init -)" \
-    && gem install bundler -v 1.17.3 \
+    && gem install bundler -v 2.3.22 \
     && bundle install
 
 # Install node-pre-gyp (required for Web packaging)
