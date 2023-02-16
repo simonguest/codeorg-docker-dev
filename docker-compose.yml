@@ -36,16 +36,4 @@ services:
       - "3306"
     volumes:
       - ./data:/var/lib/mysql
-  s3:
-    container_name: s3
-    hostname: s3
-    image: quay.io/minio/minio
-    command: server /s3 --console-address ":9001"
-    volumes:
-      - ./s3:/s3
-    expose:
-      - "9000"
-    ports:
-      - "9000:9000"
-      - "9001:9001"
 
